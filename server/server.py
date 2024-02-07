@@ -3,7 +3,7 @@ from flask_limiter import Limiter
 import crawler
 
 app = Flask(__name__, static_folder='../client')
-limiter = Limiter(app, key_func=lambda: request.remote_addr)
+limiter = Limiter(app=app, key_func=lambda: request.remote_addr)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -43,4 +43,4 @@ def stream_logs():
     return Response(generate(), mimetype='text/event-stream')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, threaded=True)
+    app.run()
